@@ -1,0 +1,18 @@
+#define LED 2
+#define PUL 8
+
+void setup()
+{
+  pinMode(LED, OUTPUT);
+  pinMode(PUL, INPUT);
+}
+
+void loop()
+{
+  if(digitalRead(PUL)){
+	digitalWrite(LED, 1);
+}
+  else{
+    digitalWrite(LED, 0);
+  } 
+}
