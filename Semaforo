@@ -1,0 +1,35 @@
+//Macros
+#define RED     2
+#define YELLOW  3
+#define GREEN   4
+#define PUL     12
+
+#define TGREEN  3000
+#define TYELLOW 1000
+#define TRED    2000
+
+void setup()
+{
+  pinMode(PUL, INPUT);     //pin 12 como entrada    
+  pinMode(RED, OUTPUT);    //pines 2, 3 y 4 como salidas
+  pinMode(YELLOW, OUTPUT);
+  pinMode(GREEN, OUTPUT); 
+}
+
+void loop()
+{
+  while (digitalRead(PUL))
+  {
+  digitalWrite(GREEN, HIGH);  //se enciende verde
+  digitalWrite(YELLOW, LOW);  //se mantiene apagado amarillo y rojo
+  digitalWrite(RED, LOW);           
+  }
+  digitalWrite(YELLOW, HIGH);  //se enciende amarillo
+  digitalWrite(GREEN, LOW);  //se mantiene apagado verde y rojo
+  digitalWrite(RED, LOW);
+  delay (TYELLOW);
+  
+  digitalWrite(RED, HIGH);  //se enciende rojo
+  digitalWrite(YELLOW, LOW);  //se mantiene apagado amarillo
+  delay (TRED);
+}  
