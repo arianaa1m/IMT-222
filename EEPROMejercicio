@@ -1,0 +1,49 @@
+#include <EEPROM.h>
+
+#define BTN        2
+#define BTN2       3
+#define TIME       5000
+#define I_EEPROMP  0
+#define MAXVOL     20
+#define MINVOL     0
+
+uint8_t volumen=EEPROM.read(I_EEPROMP);
+
+volatile unsigned long lasttime=0;
+volatile unsigned longdebounce=60;
+volatile unsigned long lasttime=0;
+
+void setup(){
+    pinmode(BTN, INPUT_PULLUP);
+    pinmode(BTN2, INPUT_PULLUP);
+    attachInterrupt(digitalPinToInterrupt(BTN),mas,FALLING);
+    attachInterrupt(digitalPinToInterrupt(BTN2),menos,FALLING);
+}
+
+void loop(){
+    delay(TIME);
+}
+
+void mas(){
+    if (millis()-lasttime>debounce){
+        if(volumen<MAXVOL){
+        volumen++;
+        serial.print("VOLUMEN(+): ");
+        Serial.println(volumen);
+        EEPROM.write(I_EEPROMP,volumen)
+        }
+        lasttime=millis();
+    }
+}
+
+void menos(){
+    if (millis()-lasttime>debounce){
+        if(volumen<MINVOL){
+        volumen--;
+        serial.print("VOLUMEN(-): ");
+        Serial.println(volumen);
+        EEPROM.write(I_EEPROMP,volumen)
+        }
+        lasttime=millis();
+    } 
+}
