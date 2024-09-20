@@ -68,5 +68,5 @@ void aumentar() {
 void disminuir() {
   if (millis() - lasttime > debounceDelay) {
     pinMenos = true;
-    lasttime = millis();
-  }
+    lasttime=millis();
+}
